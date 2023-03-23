@@ -233,8 +233,72 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
+
+//ДАТА;р.Керженец;БПК-5;р.Вишня;БПК-5;Колодец;БПК-5;оз.Н.Рустайское;БПК-5;оз.Круглое;БПК-5;оз.Маховское;БПК-5;оз.Калачик;БПК-5
+public void oxigen() throws Exception{
+    String DB_URL     = "jdbc:postgresql://rc1b-h2ibywz9kbvpjomr.mdb.yandexcloud.net:6432/meteo?targetServerType=master&ssl=true&sslmode=verify-full";
+    String DB_USER    = "meteo";
+    String DB_PASS    = "meteometeo";
+    Class.forName("org.postgresql.Driver");
+    String[] fields = {
+        "",
+        "kerzhenets_oxygen",
+        "kerzhenetsbpk5",
+        "vishnya_oxygen",
+        "vishnyabpk5",
+        "well_oxygen",
+        "wellbpk5",
+        "nrustayskoye_oxygen",
+        "nrustayskoyebpk5",
+        "krugloe_oxygen",
+        "krugloebpk5",
+        "makhovskoe_oxygen",
+        "makhovskoebpk5",
+        "kalachik_oxygen",
+        "kalachikbpk5"
+    };
+    try (FileReader fr = new FileReader("/home/ilya/galina_import/data/Oxigen.csv");
+    BufferedReader br = new BufferedReader(fr);
+    Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);) {
+   String line ="";
+   Statement stmt = null;
+   while (line!=null) {
+       line = br.readLine();
+       if (line!=null){
+           String[] values=line.split(";");
+           //Arrays.stream(values).forEach(v->System.out.println(v));
+           for (int i=1; i<values.length-1; i++){ //i<Observ.years.length-1
+               if (values[i].length()>0) {
+                   try{
+                        Observ o = new Observ(values[0],
+                        fields[i],
+                        values[i]);
+
+                        if (o.value.contains("отр")) {
+                            o.value = "0";
+                        }
+
+                        System.out.println("UPDATE public.observ SET " + o.fieldname + " = "+o.value+" WHERE id = "+o.id+";");
+
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE public.observ SET " + o.fieldname + " = "+ o.value +" WHERE id = "+o.id+";"); 
+                        stmt.close();
+                        }catch(Exception e){
+                            e.printStackTrace();
+                            System.out.println("values[0]="+values[0]+" i="+i + " values.length="+values.length + " values[i]="+values[i]);
+                            System.exit(0);
+                        }
+                    }
+                }                        
+            } 
+        }
+        
+    } catch (Exception e){
+        e.printStackTrace();
+    }
+}
+
 
     public static void main(String[] args) {
         App a = new App();
@@ -242,7 +306,8 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
        // a.create_empty();
        try {
         //a.run();
-        a.sneg();
+        //a.sneg();
+        //a.oxigen();
        } catch (Exception e){
         e.printStackTrace();
        }
