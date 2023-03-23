@@ -188,12 +188,61 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
 //        });
     };
 
+    //дата;редняя высота снега;средняя плотность;общий запас воды
+    // private int SnowLevelForest; // Уровень снега в лесу
+    // private double AverageSnowDensity; // средняя плотность снега
+    // private int MoistureWaterInSnow; // влагозапас воды в снеге
+    public void sneg() throws Exception{
+        String DB_URL     = "jdbc:postgresql://rc1b-h2ibywz9kbvpjomr.mdb.yandexcloud.net:6432/meteo?targetServerType=master&ssl=true&sslmode=verify-full";
+        String DB_USER    = "meteo";
+        String DB_PASS    = "meteometeo";
+        Class.forName("org.postgresql.Driver");
+        String[] fields = {"","snow_level_forest","average_snow_density","moisture_water_in_snow"};
+        try (FileReader fr = new FileReader("/home/ilya/galina_import/data/sneg.csv");
+        BufferedReader br = new BufferedReader(fr);
+        Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);) {
+       String line ="";
+       Statement stmt = null;
+       while (line!=null) {
+           line = br.readLine();
+           if (line!=null){
+               String[] values=line.split(";");
+               //Arrays.stream(values).forEach(v->System.out.println(v));
+               for (int i=1; i<values.length-1; i++){ //i<Observ.years.length-1
+                   if (values[i].length()>0) {
+                       try{
+                            Observ o = new Observ(values[0],
+                            fields[i],
+                            values[i]);
+
+                            System.out.println("UPDATE public.observ SET " + o.fieldname + " = "+o.value+" WHERE id = "+o.id+";");
+
+                            stmt = conn.createStatement();
+                            stmt.executeUpdate("UPDATE public.observ SET " + o.fieldname + " = "+o.value+" WHERE id = "+o.id+";");
+                            stmt.close();
+                            }catch(Exception e){
+                                e.printStackTrace();
+                                System.out.println("values[0]="+values[0]+" i="+i + " values.length="+values.length + " values[i]="+values[i]);
+                                System.exit(0);
+                            }
+                        }
+                    }                        
+                } 
+            }
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String[] args) {
         App a = new App();
         a.init();
        // a.create_empty();
        try {
-        a.run();
+        //a.run();
+        a.sneg();
        } catch (Exception e){
         e.printStackTrace();
        }
