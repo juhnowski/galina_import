@@ -22,9 +22,11 @@ public class App {
     public class Pair{
         String key;
         String value;
-        public Pair(String key, String value){
+        int year;
+        public Pair(String key, String value, int year){
             this.key = key;
             this.value = value;
+            this.year = year;
         }
     }
 
@@ -94,46 +96,46 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
     }
 
     public void init(){
-        input.add(new Pair("vishenskoe_water_color","/home/ilya/galina_import/data/Bol_cvet.csv"));
-        input.add(new Pair("vishenskoe_el_conduct","/home/ilya/galina_import/data/Bol_El.csv"));
-        input.add(new Pair("vishenskoeph","/home/ilya/galina_import/data/Bol_pH.csv"));
-        input.add(new Pair("vishenskoe_temp","/home/ilya/galina_import/data/Bol_Temp.csv"));
-        input.add(new Pair("vishenskoe_water_level","/home/ilya/galina_import/data/Bol_Uroven.csv"));
-        input.add(new Pair("kalachik_water_color","/home/ilya/galina_import/data/Kalachik_cvet.csv"));
-        input.add(new Pair("kalachik_el_conduct","/home/ilya/galina_import/data/Kalachik_El.csv"));
-        input.add(new Pair("kalachikph","/home/ilya/galina_import/data/Kalachik_pH.csv"));
-        input.add(new Pair("kalachik_temp","/home/ilya/galina_import/data/Kalachik_Temp.csv"));
-        input.add(new Pair("kalachik_water_level","/home/ilya/galina_import/data/Kalachik_Uroven.csv"));
-        input.add(new Pair("kerzhenets_water_color","/home/ilya/galina_import/data/Kerzhenets_cvet.csv"));
-        input.add(new Pair("kerzhenets_el_conduct","/home/ilya/galina_import/data/Kerzhenets_El.csv"));
-        input.add(new Pair("kerzhenetsph","/home/ilya/galina_import/data/Kerzhenets_pH.csv"));
-        input.add(new Pair("kerzhenets_temp","/home/ilya/galina_import/data/Kerzhenets_Temp.csv"));
-        input.add(new Pair("kerzhenets_water_level","/home/ilya/galina_import/data/Kerzhenets_Uroven.csv"));
-        input.add(new Pair("krugloe_water_color","/home/ilya/galina_import/data/Krugloe_cvet.csv"));
-        input.add(new Pair("krugloe_el_Conduct","/home/ilya/galina_import/data/Krugloe_El.csv"));
-        input.add(new Pair("krugloeph","/home/ilya/galina_import/data/Krugloe_pH.csv"));
-        input.add(new Pair("krugloe_temp","/home/ilya/galina_import/data/Krugloe_Temp.csv"));
-        input.add(new Pair("krugloe_water_level","/home/ilya/galina_import/data/Krugloe_Uroven.csv"));
-        input.add(new Pair("makhovskoe_water_color","/home/ilya/galina_import/data/Makhovskoe_cvet.csv"));
-        input.add(new Pair("makhovskoe_el_conduct","/home/ilya/galina_import/data/Makhovskoe_El.csv"));
-        input.add(new Pair("makhovskoeph","/home/ilya/galina_import/data/Makhovskoe_pH.csv"));
-        input.add(new Pair("makhovskoe_temp","/home/ilya/galina_import/data/Makhovskoe_Temp.csv"));
-        input.add(new Pair("makhovskoe_water_level","/home/ilya/galina_import/data/Makhovskoe_Uroven.csv"));
-        input.add(new Pair("nrustayskoye_water_color","/home/ilya/galina_import/data/NRustayskoye_cvet.csv"));
-        input.add(new Pair("nrustayskoye_el_conduct","/home/ilya/galina_import/data/NRustayskoye_El.csv"));
-        input.add(new Pair("nrustayskoyeph", "/home/ilya/galina_import/data/NRustayskoye_pH.csv"));
-        input.add(new Pair("nrustayskoye_temp","/home/ilya/galina_import/data/NRustayskoye_Temp.csv"));
-        input.add(new Pair("makhovskoe_water_level","/home/ilya/galina_import/data/Makhovskoe_Uroven.csv"));
-        input.add(new Pair("vishnya_water_color","/home/ilya/galina_import/data/Vishnya_cvet.csv"));
-        input.add(new Pair("vishnya_el_conduct","/home/ilya/galina_import/data/Vishnya_El.csv"));
-        input.add(new Pair("vishnyaph","/home/ilya/galina_import/data/Vishnya_pH.csv"));
-        input.add(new Pair("vishnya_temp","/home/ilya/galina_import/data/Vishnya_Temp.csv"));
-        input.add(new Pair("vishnya_water_level","/home/ilya/galina_import/data/Vishnya_Uroven.csv"));
-        input.add(new Pair("well_water_color","/home/ilya/galina_import/data/Well_cvet.csv"));
-        input.add(new Pair("well_el_conduct","/home/ilya/galina_import/data/Well_El.csv"));
-        input.add(new Pair("wellph","/home/ilya/galina_import/data/Well_pH.csv"));
-        input.add(new Pair("well_temp","/home/ilya/galina_import/data/Well_Temp.csv"));
-        input.add(new Pair("well_water_level","/home/ilya/galina_import/data/Well_Uroven.csv"));
+        input.add(new Pair("vishenskoe_water_color","/home/ilya/galina_import/data/Bol_cvet.csv",7));
+        input.add(new Pair("vishenskoe_el_conduct","/home/ilya/galina_import/data/Bol_El.csv",7));
+        input.add(new Pair("vishenskoeph","/home/ilya/galina_import/data/Bol_pH.csv",7));
+        input.add(new Pair("vishenskoe_temp","/home/ilya/galina_import/data/Bol_Temp.csv",7));
+        input.add(new Pair("vishenskoe_water_level","/home/ilya/galina_import/data/Bol_Uroven.csv",7));
+        input.add(new Pair("kalachik_water_color","/home/ilya/galina_import/data/Kalachik_cvet.csv",18));
+        input.add(new Pair("kalachik_el_conduct","/home/ilya/galina_import/data/Kalachik_El.csv",18));
+        input.add(new Pair("kalachikph","/home/ilya/galina_import/data/Kalachik_pH.csv",18));
+        input.add(new Pair("kalachik_temp","/home/ilya/galina_import/data/Kalachik_Temp.csv",18));
+        input.add(new Pair("kalachik_water_level","/home/ilya/galina_import/data/Kalachik_Uroven.csv",18));
+        input.add(new Pair("kerzhenets_water_color","/home/ilya/galina_import/data/Kerzhenets_cvet.csv",7));
+        input.add(new Pair("kerzhenets_el_conduct","/home/ilya/galina_import/data/Kerzhenets_El.csv",7));
+        input.add(new Pair("kerzhenetsph","/home/ilya/galina_import/data/Kerzhenets_pH.csv",7));
+        input.add(new Pair("kerzhenets_temp","/home/ilya/galina_import/data/Kerzhenets_Temp.csv",7));
+        input.add(new Pair("kerzhenets_water_level","/home/ilya/galina_import/data/Kerzhenets_Uroven.csv",7));
+        input.add(new Pair("krugloe_water_color","/home/ilya/galina_import/data/Krugloe_cvet.csv",16));
+        input.add(new Pair("krugloe_el_Conduct","/home/ilya/galina_import/data/Krugloe_El.csv",16));
+        input.add(new Pair("krugloeph","/home/ilya/galina_import/data/Krugloe_pH.csv",16));
+        input.add(new Pair("krugloe_temp","/home/ilya/galina_import/data/Krugloe_Temp.csv",16));
+        input.add(new Pair("krugloe_water_level","/home/ilya/galina_import/data/Krugloe_Uroven.csv",16));
+        input.add(new Pair("makhovskoe_water_level","/home/ilya/galina_import/data/Makhovskoe_Uroven.csv",18));
+        input.add(new Pair("makhovskoe_water_color","/home/ilya/galina_import/data/Makhovskoe_cvet.csv",18));
+        input.add(new Pair("makhovskoe_el_conduct","/home/ilya/galina_import/data/Makhovskoe_El.csv",18));
+        input.add(new Pair("makhovskoeph","/home/ilya/galina_import/data/Makhovskoe_pH.csv",18));
+        input.add(new Pair("makhovskoe_temp","/home/ilya/galina_import/data/Makhovskoe_Temp.csv",18));
+        input.add(new Pair("nrustayskoye_water_level","/home/ilya/galina_import/data/NRustayskoye_Uroven.csv",18));
+        input.add(new Pair("nrustayskoye_water_color","/home/ilya/galina_import/data/NRustayskoye_cvet.csv",7));
+        input.add(new Pair("nrustayskoye_el_conduct","/home/ilya/galina_import/data/NRustayskoye_El.csv",7));
+        input.add(new Pair("nrustayskoyeph", "/home/ilya/galina_import/data/NRustayskoye_pH.csv",7));
+        input.add(new Pair("nrustayskoye_temp","/home/ilya/galina_import/data/NRustayskoye_Temp.csv",7));
+        input.add(new Pair("vishnya_water_color","/home/ilya/galina_import/data/Vishnya_cvet.csv",7));
+        input.add(new Pair("vishnya_el_conduct","/home/ilya/galina_import/data/Vishnya_El.csv",7));
+        input.add(new Pair("vishnyaph","/home/ilya/galina_import/data/Vishnya_pH.csv",7));
+        input.add(new Pair("vishnya_temp","/home/ilya/galina_import/data/Vishnya_Temp.csv",7));
+        input.add(new Pair("vishnya_water_level","/home/ilya/galina_import/data/Vishnya_Uroven.csv",7));
+        input.add(new Pair("well_water_color","/home/ilya/galina_import/data/Well_cvet.csv",7));
+        input.add(new Pair("well_el_conduct","/home/ilya/galina_import/data/Well_El.csv",7));
+        input.add(new Pair("wellph","/home/ilya/galina_import/data/Well_pH.csv",7));
+        input.add(new Pair("well_temp","/home/ilya/galina_import/data/Well_Temp.csv",7));
+        input.add(new Pair("well_water_level","/home/ilya/galina_import/data/Well_Uroven.csv",7));
     }
 
     public void run() throws Exception {
@@ -143,7 +145,8 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
         Class.forName("org.postgresql.Driver");
         
 
-        input.parallelStream().forEach(p -> {
+ //       input.parallelStream().forEach(p -> {
+    Pair p = input.get(39); 
 
             try (FileReader fr = new FileReader(p.value);
                  BufferedReader br = new BufferedReader(fr);
@@ -154,12 +157,13 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
                     line = br.readLine();
                     if (line!=null){
                         String[] values=line.split(";");
-                        for (int i=1; i<values.length; i++){ //i<Observ.years.length-1
-                            if (!values[i].isEmpty()) {
+                        //Arrays.stream(values).forEach(v->System.out.println(v));
+                        for (int i=1; i<values.length-1; i++){ //i<Observ.years.length-1
+                            if (values[i].length()>0) {
                                 try{
-                                    Observ o = new Observ(values[0].substring(0,5)+"."+Observ.years[i],
+                                    Observ o = new Observ(values[0].substring(0,5)+"."+String.format("%02d", p.year+i),
                                     p.key,
-                                    values[i+1]);
+                                    values[i]);
 
                                     System.out.println("UPDATE public.observ SET " + o.fieldname + " = "+o.value+" WHERE id = "+o.id+";");
 
@@ -167,7 +171,8 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
                                     stmt.executeUpdate("UPDATE public.observ SET " + o.fieldname + " = "+o.value+" WHERE id = "+o.id+";");
                                     stmt.close();
                                 }catch(Exception e){
-                                    System.out.println("values[0]="+values[0]+" i="+i + " values.length="+values.length);
+                                    e.printStackTrace();
+                                    System.out.println("values[0]="+values[0]+" i="+i + " values.length="+values.length + " values[i]="+values[i]);
                                     System.exit(0);
                                 }
                             }
@@ -176,13 +181,11 @@ WHERE NOT EXISTS (SELECT * FROM upsert)
                 }
                 
             } catch (Exception e){
-
                 e.printStackTrace();
-                System.exit(0);
             }
 
 
-        });
+//        });
     };
 
     public static void main(String[] args) {
